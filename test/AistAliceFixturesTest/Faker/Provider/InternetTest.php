@@ -11,7 +11,6 @@
 namespace AistAliceFixtures\Faker\Provider;
 
 use BaconStringUtils\Filter\Slugify;
-use BaconStringUtils\Slugifier;
 use BaconStringUtils\UniDecoder;
 use Faker\Generator;
 use Faker\Provider\Internet as FakerInternet;
