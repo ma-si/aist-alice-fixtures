@@ -17,7 +17,6 @@ use Zend\ServiceManager\ServiceLocatorInterface;
 
 class FixturesPersisterFactory implements FactoryInterface
 {
-
     /**
      * {@inheritDoc}
      * @return Application
@@ -30,5 +29,4 @@ class FixturesPersisterFactory implements FactoryInterface
 
         return $persisterHelper;
     }
-
 }
