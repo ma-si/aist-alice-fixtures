@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<phpunit
+        backupGlobals               = "false"
+        backupStaticAttributes      = "false"
+        colors                      = "true"
+        convertErrorsToExceptions   = "true"
+        convertNoticesToExceptions  = "true"
+        convertWarningsToExceptions = "true"
+        processIsolation            = "false"
+        stopOnFailure               = "false"
+        syntaxCheck                 = "false"
+        bootstrap                   = "./test/bootstrap.php" >
+    <testsuites>
+        <testsuite name="AistAliceFixtures Test Suite">
+            <directory>./test/</directory>
+        </testsuite>
+    </testsuites>
+
+    <groups>
+        <exclude>
+            <group>disable</group>
+        </exclude>
+    </groups>
+
+    <filter>
+        <whitelist addUncoveredFilesFromWhitelist="true">
+            <directory suffix=".php">./src</directory>
+        </whitelist>
+    </filter>
+
+    <logging>
+        <log type="coverage-html" target="build/coverage" title="Linkania Coverage" charset="UTF-8" yui="true" highlight="true" lowUpperBound="35" highLowerBound="70"/>
+        <log type="coverage-clover" target="build/logs/clover.xml"/>
+        <log type="coverage-php" target="build/logs/coverage.serialized"/>
+        <log type="coverage-text" target="php://stdout" showUncoveredFiles="false"/>
+        <log type="json" target="build/logs/logfile.json"/>
+        <log type="tap" target="build/logs/logfile.tap"/>
+        <log type="junit" target="build/logs/junit.xml" logIncompleteSkipped="false"/>
+        <log type="testdox-html" target="build/logs/testdox.html"/>
+        <log type="testdox-text" target="build/logs/testdox.txt"/>
+    </logging>
+
+    <php>
+        <ini name="date.timezone" value="UTC"/>
+
+        <!-- OB_ENABLED should be enabled for some tests to check if all
+             functionality works as expected. Such tests include those for
+             Zend\Soap and Zend\Session, which require that headers not be sent
+             in order to work. -->
+        <env name="TESTS_ZEND_OB_ENABLED" value="false" />
+
+        <env name="TESTS_ZEND_FEED_PUBSUBHUBBUB_BASEURI" value="false" />
+        <env name="TESTS_ZEND_FEED_READER_ONLINE_ENABLED" value="false" />
+    </php>
+</phpunit>
