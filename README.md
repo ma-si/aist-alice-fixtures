@@ -1,6 +1,7 @@
-Aist Alice Fixtures [![SensioLabsInsight](https://insight.sensiolabs.com/projects/c344bb5d-9d66-4f63-b006-b4d758643904/small.png)](https://insight.sensiolabs.com/projects/c344bb5d-9d66-4f63-b006-b4d758643904)
-===================
-A Zend Framework 2 Module to help load Doctrine Fixtures with [nelmio/alice](https://github.com/nelmio/alice) and [fzaninotto/Faker](https://github.com/fzaninotto/Faker).
+AistAliceFixtures [![SensioLabsInsight](https://insight.sensiolabs.com/projects/c344bb5d-9d66-4f63-b006-b4d758643904/small.png)](https://insight.sensiolabs.com/projects/c344bb5d-9d66-4f63-b006-b4d758643904)
+=================
+A Zend Framework 2 Module integrating [nelmio/alice](https://github.com/nelmio/alice) and [fzaninotto/Faker](https://github.com/fzaninotto/Faker).
+AistAliceFixtures allows you to create fixtures/fake data for use while developing or testing projects. It provides you a few essential tools to make it very easy to generate complex data with constraints in a readable and easy to edit way.
 
 [![Build Status](https://travis-ci.org/ma-si/aist-alice-fixtures.svg?branch=master)](https://travis-ci.org/ma-si/aist-alice-fixtures)
 [![Total Downloads](https://poser.pugx.org/aist/aist-alice-fixtures/downloads)](https://packagist.org/packages/aist/aist-alice-fixtures)
@@ -9,10 +10,6 @@ A Zend Framework 2 Module to help load Doctrine Fixtures with [nelmio/alice](htt
 [![Packagist](https://img.shields.io/packagist/v/aist/aist-alice-fixtures.svg)]()
 [![Code Climate](https://codeclimate.com/github/ma-si/aist-alice-fixtures/badges/gpa.svg)](https://codeclimate.com/github/ma-si/aist-alice-fixtures)
 [![License](https://poser.pugx.org/aist/aist-alice-fixtures/license)](https://packagist.org/packages/aist/aist-alice-fixtures)
-
-
-## Introduction
-Add fixtures to your modules.
 
 
 ## Installation
@@ -29,8 +26,7 @@ For composer documentation, please refer to [getcomposer.org](http://getcomposer
 2. Add the `AistAliceFixtures` module to the module section of your `config/application.config.php`
 
 ## Formatters
-This module provides few useful formatters extending faker. Here is a list of the bundled formatters.
-
+This module provides additional formatters extending faker. Here is a list of the bundled formatters.
 
 ### `AistAliceFixtures\Faker\Provider\Internet` extends `Faker\Provider\Internet`
     slug                    // 'aut-repellat-commodi-vel-itaque-nihil-id-saepe-nostrum'
@@ -39,8 +35,7 @@ This module provides few useful formatters extending faker. Here is a list of th
 `<slugify('some text')>` allows to pass parameter into slugifier
 
 
-## Example
-Here is a complete example of entity declaration:
+## Example fixture
 
 ```yaml
 AistUser\Entity\AistUser:
@@ -53,5 +48,11 @@ AistUser\Entity\AistUser:
 ```
 
 
-## Check list
-- [ ] create checklist
+## Loading fixtures
+    bin/doctrine-module orm:fixtures:load --force
+It will append fixtures to existing DB.
+
+
+## Checklist
+- [ ] Add truncate data & --append option
+- [ ] Add tests
