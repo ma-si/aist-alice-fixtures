@@ -1,14 +1,13 @@
 <?php
 
 /**
- * AistAliceFixtures (http://mateuszsitek.com/projects/aist-alice-fixtures)
+ * Aist Alice Fixtures (http://mateuszsitek.com/projects/fixtures)
  *
- * @link      http://github.com/ma-si/aist-alice-fixtures for the canonical source repository
- * @copyright Copyright (c) 2006-2015 Aist Internet Technologies (http://aist.pl) All rights reserved.
+ * @copyright Copyright (c) 2017-2018 DIGITAL WOLVES LTD (http://digitalwolves.ltd) All rights reserved.
  * @license   http://opensource.org/licenses/BSD-3-Clause BSD-3-Clause
  */
 
-namespace AistAliceFixtures\Tools\Console\Helper;
+namespace Aist\AliceFixtures\Tools\Console\Helper;
 
 use DoctrineModule\Persistence\ProvidesObjectManager;
 use Nelmio\Alice\Fixtures;
@@ -83,5 +82,4 @@ class FixtureLoaderHelper extends Helper
     {
         return 'fixtureLoader';
     }
-
 }

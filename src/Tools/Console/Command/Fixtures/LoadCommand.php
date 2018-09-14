@@ -1,17 +1,16 @@
 <?php
 
 /**
- * AistAliceFixtures (http://mateuszsitek.com/projects/aist-alice-fixtures)
+ * Aist Alice Fixtures (http://mateuszsitek.com/projects/fixtures)
  *
- * @link      http://github.com/ma-si/aist-alice-fixtures for the canonical source repository
- * @copyright Copyright (c) 2006-2015 Aist Internet Technologies (http://aist.pl) All rights reserved.
+ * @copyright Copyright (c) 2017-2018 DIGITAL WOLVES LTD (http://digitalwolves.ltd) All rights reserved.
  * @license   http://opensource.org/licenses/BSD-3-Clause BSD-3-Clause
  */
 
-namespace AistAliceFixtures\Tools\Console\Command\Fixtures;
+namespace Aist\AliceFixtures\Tools\Console\Command\Fixtures;
 
-use AistAliceFixtures\Tools\Console\Helper\FixtureLoaderHelper;
-use AistAliceFixtures\Tools\Console\Helper\FixturePersisterHelper;
+use Aist\AliceFixtures\Tools\Console\Helper\FixtureLoaderHelper;
+use Aist\AliceFixtures\Tools\Console\Helper\FixturePersisterHelper;
 use Doctrine\ORM\Tools\SchemaTool;
 use Doctrine\ORM\Utility\PersisterHelper;
 use Nelmio\Alice\Fixtures;
@@ -37,7 +36,9 @@ class LoadCommand extends AbstractCommand
         )
         ->setDefinition([
             new InputOption(
-                'force', null, InputOption::VALUE_NONE,
+                'force',
+                null,
+                InputOption::VALUE_NONE,
                 "Don't ask for the deletion of the database, but force the operation to run."
             )
         ])
@@ -56,9 +57,12 @@ EOT
     /**
      * {@inheritdoc}
      */
-    protected function executeFixturesCommand(InputInterface $input, OutputInterface $output, FixturePersisterHelper $persisterHelper, FixtureLoaderHelper $loaderHelper)
-    {
-//        var_dump('test');
+    protected function executeFixturesCommand(
+        InputInterface $input,
+        OutputInterface $output,
+        FixturePersisterHelper $persisterHelper,
+        FixtureLoaderHelper $loaderHelper
+    ) {
 //        if ($input->getOption('dump-sql')) {
 ////            $sqls = $schemaTool->getCreateSchemaSql($metadatas);
 ////            $output->writeln(implode(';' . PHP_EOL, $sqls) . ';');
@@ -73,21 +77,21 @@ EOT
             $files,
             $objectManager,
             $options
-//            [
-////                'locale' => 'en_US',
-//                'providers' => $providers,
-////                'seed' => 1,
-////                'logger' => null,
-////                'persist_once' => false,
-//            ]
+            //            [
+            ////                'locale' => 'en_US',
+            //                'providers' => $providers,
+            ////                'seed' => 1,
+            ////                'logger' => null,
+            ////                'persist_once' => false,
+            //            ]
         );
-//        var_dump($objects);
+
 //            $persisterHelper->getPersister()->persist($loaderHelper->getLoader());
-        $output->writeln(sprintf("  - Inserted <fg=green>objects</fg=green> (<fg=yellow>%s</fg=yellow>)", count($objects)));
-//        $output->writeln('Fixtures loaded successfully!');
+        $output->writeln(
+            sprintf("  - Inserted <fg=green>objects</fg=green> (<fg=yellow>%s</fg=yellow>)", count($objects))
+        );
 //        }
 
         return 0;
     }
-
 }

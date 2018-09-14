@@ -1,14 +1,13 @@
 <?php
 
 /**
- * AistAliceFixtures (http://mateuszsitek.com/projects/aist-alice-fixtures)
+ * Aist Alice Fixtures (http://mateuszsitek.com/projects/fixtures)
  *
- * @link      http://github.com/ma-si/aist-alice-fixtures for the canonical source repository
- * @copyright Copyright (c) 2006-2015 Aist Internet Technologies (http://aist.pl) All rights reserved.
+ * @copyright Copyright (c) 2017-2018 DIGITAL WOLVES LTD (http://digitalwolves.ltd) All rights reserved.
  * @license   http://opensource.org/licenses/BSD-3-Clause BSD-3-Clause
  */
 
-namespace AistAliceFixtures;
+namespace Aist\AliceFixtures;
 
 use Zend\EventManager\EventInterface;
 use Zend\ModuleManager\Feature\ConfigProviderInterface;
@@ -16,7 +15,7 @@ use Zend\ModuleManager\Feature\InitProviderInterface;
 use Zend\ModuleManager\ModuleManagerInterface;
 
 /**
- * AistAliceFixtures Module
+ * Aist Alice Fixtures Module
  */
 class Module implements ConfigProviderInterface, InitProviderInterface
 {
@@ -25,21 +24,7 @@ class Module implements ConfigProviderInterface, InitProviderInterface
      */
     public function getConfig()
     {
-        return include __DIR__ . '/config/module.config.php';
-    }
-
-    public function getAutoloaderConfig()
-    {
-        return [
-            'Zend\Loader\ClassMapAutoloader' => [
-                __DIR__ . '/autoload_classmap.php',
-            ],
-            'Zend\Loader\StandardAutoloader' => [
-                'namespaces' => [
-                    __NAMESPACE__ => __DIR__ . '/src/' . __NAMESPACE__,
-                ],
-            ],
-        ];
+        return include __DIR__ . '/../config/module.config.php';
     }
 
     /**
@@ -77,10 +62,10 @@ class Module implements ConfigProviderInterface, InitProviderInterface
         /** @var \Zend\ServiceManager\ServiceLocatorInterface $serviceLocator */
         $serviceLocator = $event->getParam('ServiceManager');
 
-        /** @var \AistAliceFixtures\Tools\Console\Helper\FixtureLoaderHelper $loader */
+        /** @var \Aist\AliceFixtures\Tools\Console\Helper\FixtureLoaderHelper $loader */
         $loader = $serviceLocator->get('fixtures.loader');
 
-        /** @var \AistAliceFixtures\Tools\Console\Helper\FixturePersisterHelper $persister */
+        /** @var \Aist\AliceFixtures\Tools\Console\Helper\FixturePersisterHelper $persister */
         $persister = $serviceLocator->get('fixture.persister');
 
         $commands = [

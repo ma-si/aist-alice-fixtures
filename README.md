@@ -1,7 +1,10 @@
-AistAliceFixtures [![SensioLabsInsight](https://insight.sensiolabs.com/projects/c344bb5d-9d66-4f63-b006-b4d758643904/small.png)](https://insight.sensiolabs.com/projects/c344bb5d-9d66-4f63-b006-b4d758643904)
-=================
-A Zend Framework 2 Module integrating [nelmio/alice](https://github.com/nelmio/alice) and [fzaninotto/Faker](https://github.com/fzaninotto/Faker).
-AistAliceFixtures allows you to create fixtures/fake data for use while developing or testing projects. It provides you a few essential tools to make it very easy to generate complex data with constraints in a readable and easy to edit way.
+#Aist Alice Fixtures
+
+A Zend Framework Module integrating [nelmio/alice](https://github.com/nelmio/alice)
+and [fzaninotto/Faker](https://github.com/fzaninotto/Faker).
+Aist Alice Fixtures allows you to create fixtures/fake data for use while developing or testing projects.
+It provides you a few essential tools to make it very easy to generate complex data with constraints in a readable
+and easy to edit way.
 
 [![Build Status](https://travis-ci.org/ma-si/aist-alice-fixtures.svg?branch=master)](https://travis-ci.org/ma-si/aist-alice-fixtures)
 [![Total Downloads](https://poser.pugx.org/aist/aist-alice-fixtures/downloads)](https://packagist.org/packages/aist/aist-alice-fixtures)
@@ -19,18 +22,19 @@ For composer documentation, please refer to [getcomposer.org](http://getcomposer
 1. Install the module via composer by running:
 
     ```sh
-    php composer.phar require aist/aist-alice-fixtures
+    composer require --dev aist/aist-alice-fixtures
     ```
 
-   or download it directly from github and place it in your application's `module/` directory.
-2. Add the `AistAliceFixtures` module to the module section of your `config/application.config.php`
+2. Add the `Aist\AliceFixtures` module to the module section of your `config/application.config.php`
 
 ## Formatters
 This module provides additional formatters extending faker. Here is a list of the bundled formatters.
 
-### `AistAliceFixtures\Faker\Provider\Internet` extends `Faker\Provider\Internet`
-    slug                    // 'aut-repellat-commodi-vel-itaque-nihil-id-saepe-nostrum'
-    uniDecode               // 'Zazolc gesla jazn'
+### `Aist\AliceFixtures\Faker\Provider\Internet` extends `Faker\Provider\Internet`
+```
+slug      // 'aut-repellat-commodi-vel-itaque-nihil-id-saepe-nostrum'
+uniDecode // 'Zazolc gesla jazn'
+```
 
 `<slugify('some text')>` allows to pass parameter into slugifier
 
@@ -49,7 +53,9 @@ AistUser\Entity\AistUser:
 
 
 ## Loading fixtures
-    bin/doctrine-module orm:fixtures:load --force
+```
+bin/doctrine-module orm:fixtures:load --force
+```
 It will append fixtures to existing DB.
 
 

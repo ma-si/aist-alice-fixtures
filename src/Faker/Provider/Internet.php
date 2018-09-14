@@ -1,16 +1,15 @@
 <?php
 
 /**
- * AistAliceFixtures (http://mateuszsitek.com/projects/aist-alice-fixtures)
+ * Aist Alice Fixtures (http://mateuszsitek.com/projects/fixtures)
  *
- * @link      http://github.com/ma-si/aist-alice-fixtures for the canonical source repository
- * @copyright Copyright (c) 2006-2015 Aist Internet Technologies (http://aist.pl) All rights reserved.
+ * @copyright Copyright (c) 2017-2018 DIGITAL WOLVES LTD (http://digitalwolves.ltd) All rights reserved.
  * @license   http://opensource.org/licenses/BSD-3-Clause BSD-3-Clause
  */
 
-namespace AistAliceFixtures\Faker\Provider;
+namespace Aist\AliceFixtures\Faker\Provider;
 
-use BaconStringUtils\Slugifier;
+use BaconStringUtils\Filter\Slugify;
 use BaconStringUtils\UniDecoder;
 use Faker\Generator;
 use Faker\Provider\Internet as FakerInternet;
@@ -32,16 +31,17 @@ class Internet extends FakerInternet
     private $filters;
 
     /**
-     * @var Slugifier
+     * @var Slugify
      */
     private $slugifier;
 
     /**
      * @param Generator $generator
-     * @param Slugifier $slugifier
+     * @param Slugify $slugifier
      * @param UniDecoder $uniDecoder
+     * @param array $filters
      */
-    public function __construct(Generator $generator, FilterInterface $slugifier, UniDecoder $uniDecoder, $filters = [])
+    public function __construct(Generator $generator, Slugify $slugifier, UniDecoder $uniDecoder, $filters = [])
     {
         parent::__construct($generator);
         $this->slugifier = $slugifier;
@@ -60,13 +60,13 @@ class Internet extends FakerInternet
      */
     public function slugify($text)
     {
-        if (!is_string($text) || $text === '') {
+        if (! is_string($text) || $text === '') {
             return '';
         }
         $text = $this->uniDecode($text);
         $text = $this->slugifier->filter($text);
 
-        foreach($this->filters as $filter) {
+        foreach ($this->filters as $filter) {
             $text = $filter->filter($text);
         }
 
@@ -82,7 +82,7 @@ class Internet extends FakerInternet
      */
     public function uniDecode($text)
     {
-        if (!is_string($text) || $text === '') {
+        if (! is_string($text) || $text === '') {
             return '';
         }
 

@@ -1,18 +1,17 @@
 <?php
 
 /**
- * AistAliceFixtures (http://mateuszsitek.com/projects/aist-alice-fixtures)
+ * Aist Alice Fixtures (http://mateuszsitek.com/projects/fixtures)
  *
- * @link      http://github.com/ma-si/aist-alice-fixtures for the canonical source repository
- * @copyright Copyright (c) 2006-2015 Aist Internet Technologies (http://aist.pl) All rights reserved.
+ * @copyright Copyright (c) 2017-2018 DIGITAL WOLVES LTD (http://digitalwolves.ltd) All rights reserved.
  * @license   http://opensource.org/licenses/BSD-3-Clause BSD-3-Clause
  */
 
-namespace test\AistAliceFixturesTest\Filter;
+namespace Test\Aist\AliceFixtures\Filter;
 
-use AistAliceFixtures\Filter\UniDecodeFilter;
+use Aist\AliceFixtures\Filter\UniDecodeFilter;
 
-class UniDecodeFilterTest extends \PHPUnit_Framework_TestCase
+class UniDecodeFilterTest extends \PHPUnit\Framework\TestCase
 {
 
     /**

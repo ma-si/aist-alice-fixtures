@@ -1,21 +1,21 @@
 <?php
 
 /**
- * AistAliceFixtures (http://mateuszsitek.com/projects/aist-alice-fixtures)
+ * Aist Alice Fixtures (http://mateuszsitek.com/projects/fixtures)
  *
- * @link      http://github.com/ma-si/aist-alice-fixtures for the canonical source repository
- * @copyright Copyright (c) 2006-2015 Aist Internet Technologies (http://aist.pl) All rights reserved.
+ * @copyright Copyright (c) 2017-2018 DIGITAL WOLVES LTD (http://digitalwolves.ltd) All rights reserved.
  * @license   http://opensource.org/licenses/BSD-3-Clause BSD-3-Clause
  */
 
-namespace AistAliceFixtures\Faker\Provider;
+namespace Test\Aist\AliceFixtures\Faker\Provider;
 
+use Aist\AliceFixtures\Faker\Provider\Internet;
 use BaconStringUtils\Filter\Slugify;
 use BaconStringUtils\UniDecoder;
 use Faker\Generator;
 use Faker\Provider\Internet as FakerInternet;
 
-class InternetTest extends \PHPUnit_Framework_TestCase
+class InternetTest extends \PHPUnit\Framework\TestCase
 {
     private $expectedSlug = 'zazolc-gesla-jazn';
 
@@ -27,17 +27,42 @@ class InternetTest extends \PHPUnit_Framework_TestCase
      * @var array
      */
     private $testedStrings = [
-        ['.Zażółć gęślą jaźń-!-', '.Zazolc gesla jazn-!-', 'zazolc-gesla-jazn', ['.Zazolc gesla jazn-!-', 'zazolc-gesla-jazn']],
-        ['Zażółć gęślą jaźń', 'Zazolc gesla jazn', 'zazolc-gesla-jazn', ['Zazolc gesla jazn', 'zazolc-gesla-jazn']],
-        ['.Zażółć-gęślą-jaźń-!-', '.Zazolc-gesla-jazn-!-', 'zazolc-gesla-jazn', ['.Zazolc-gesla-jazn-!-', 'zazolc-gesla-jazn']],
+        [
+            '.Zażółć gęślą jaźń-!-',
+            '.Zazolc gesla jazn-!-',
+            'zazolc-gesla-jazn',
+            [
+                '.Zazolc gesla jazn-!-',
+                'zazolc-gesla-jazn',
+            ],
+        ],
+        [
+            'Zażółć gęślą jaźń',
+            'Zazolc gesla jazn',
+            'zazolc-gesla-jazn',
+            [
+                'Zazolc gesla jazn',
+                'zazolc-gesla-jazn',
+            ],
+        ],
+        [
+            '.Zażółć-gęślą-jaźń-!-',
+            '.Zazolc-gesla-jazn-!-',
+            'zazolc-gesla-jazn',
+            [
+                '.Zazolc-gesla-jazn-!-',
+                'zazolc-gesla-jazn',
+            ],
+        ],
     ];
 
     public function testSlugifyWithEmptyString()
     {
+//    Use createMock() or getMockBuilder()
         $emptyString = '';
-        $generator = $this->getMock(Generator::class);
-        $slugifier = $this->getMock(Slugify::class);
-        $uniDecoder = $this->getMock(UniDecoder::class);
+        $generator = $this->createMock(Generator::class);
+        $slugifier = $this->createMock(Slugify::class);
+        $uniDecoder = $this->createMock(UniDecoder::class);
         $internet = new Internet($generator, $slugifier, $uniDecoder);
         $slug = $internet->slugify($emptyString);
         $this->assertSame($emptyString, $slug);
@@ -50,9 +75,9 @@ class InternetTest extends \PHPUnit_Framework_TestCase
      */
     public function testSlugifyReturnsSlugifiedString($text, $uniDecoded, $slugified, array $filteredValues)
     {
-        $generator = $this->getMock(Generator::class);
-        $slugifier = $this->getMock(Slugify::class);
-        $uniDecoder = $this->getMock(UniDecoder::class);
+        $generator = $this->createMock(Generator::class);
+        $slugifier = $this->createMock(Slugify::class);
+        $uniDecoder = $this->createMock(UniDecoder::class);
         $filters = [];
 
         $uniDecoder
@@ -68,7 +93,7 @@ class InternetTest extends \PHPUnit_Framework_TestCase
             ->with($uniDecoded)
             ->willReturn($slugified);
 
-        foreach($filters as $key => $filter) {
+        foreach ($filters as $key => $filter) {
             $filter
                 ->expects(self::once())
                 ->method('filter')

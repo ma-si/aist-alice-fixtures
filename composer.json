@@ -1,12 +1,12 @@
 {
     "name": "aist/aist-alice-fixtures",
-    "description": "Alice Fixtures for ZF2.",
+    "description": "Alice Fixtures for Zend Framework.",
     "license": "BSD-3-Clause",
     "keywords": [
         "alice",
         "fixtures",
         "faker",
-        "zf2",
+        "zend framework",
         "developer tools"
     ],
     "authors": [
@@ -18,27 +18,66 @@
         }
     ],
     "require": {
-        "php": ">=5.5",
-        "doctrine/doctrine-orm-module": "dev-master",
-        "zendframework/zend-modulemanager": "~2.5",
-        "fzaninotto/faker": "1.5.*@dev",
-        "nelmio/alice": "2.0.*@dev",
-        "bacon/bacon-string-utils": "dev-master"
+        "php": "^7.2",
+        "bacon/bacon-string-utils": "^1.1",
+        "doctrine/doctrine-orm-module": "^2.1",
+        "nelmio/alice": "^2.0",
+        "zendframework/zend-modulemanager": "^2.8"
     },
     "require-dev": {
-        "phpunit/phpunit": "4.8.*"
+        "malukenho/docheader": "^0.1.7",
+        "mmoreram/php-formatter": "^1.3",
+        "phpunit/phpunit": "^7.3",
+        "squizlabs/php_codesniffer": "^3.2"
     },
     "autoload": {
-        "psr-0": {
-            "AistAliceFixtures": "src/"
-        },
-        "classmap": [
-            "./Module.php"
-        ]
+        "psr-4": {
+            "Aist\\AliceFixtures\\": "src/"
+        }
     },
     "autoload-dev": {
         "psr-4": {
-            "AistAliceFixturesTest\\": "test/"
+            "Test\\Aist\\AliceFixtures\\": "test/"
         }
+    },
+    "extra": {
+        "zf": {
+            "component": "Aist\\AliceFixtures",
+            "module": "Aist\\AliceFixtures",
+            "config-provider": "Aist\\AliceFixtures\\ConfigProvider"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "scripts": {
+        "header-check": [
+            "docheader check src",
+            "docheader check config",
+            "docheader check test"
+        ],
+        "header-fix": [
+            "php-formatter formatter:header:fix src",
+            "php-formatter formatter:header:fix config",
+            "php-formatter formatter:header:fix test"
+        ],
+        "use-sort": [
+            "php-formatter formatter:use:sort src",
+            "php-formatter formatter:use:sort config",
+            "php-formatter formatter:use:sort test"
+        ],
+        "all-check": [
+            "@header-check",
+            "@cs-check"
+        ],
+        "all-fix": [
+            "@header-fix",
+            "@use-sort",
+            "@cs-fix"
+        ],
+        "test": "phpunit --colors=always",
+        "cs-check": "phpcs --colors",
+        "cs-fix": "phpcbf --colors",
+        "test-coverage": "phpunit --coverage-clover clover.xml"
     }
 }
